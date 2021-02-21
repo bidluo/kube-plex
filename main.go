@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"fmt"
 	"log"
 	"os"
@@ -65,7 +66,7 @@ func main() {
 		log.Fatalf("Error building kubernetes clientset: %s", err)
 	}
 
-	pod, err = kubeClient.CoreV1().Pods(namespace).Create(pod)
+	pod, err = kubeClient.CoreV1().Pods(namespace).Create(context.TODO(), pod, metav1.CreateOptions{})
 	if err != nil {
 		log.Fatalf("Error creating pod: %s", err)
 	} else {
@@ -92,7 +93,7 @@ func main() {
 
 	if cu, err := strconv.ParseBool(cleanUpPod); cu && err != nil {
 		log.Printf("Cleaning up pod...")
-		err = kubeClient.CoreV1().Pods(namespace).Delete(pod.Name, nil)
+	    err = kubeClient.CoreV1().Pods(namespace).Delete(context.TODO(), pod.Name, metav1.DeleteOptions{})
 		if err != nil {
 			log.Fatalf("Error cleaning up pod: %s", err)
 		}
@@ -229,7 +230,7 @@ func toCoreV1EnvVar(in []string) []corev1.EnvVar {
 
 func waitForPodCompletion(cl kubernetes.Interface, pod *corev1.Pod) error {
 	for {
-		pod, err := cl.CoreV1().Pods(pod.Namespace).Get(pod.Name, metav1.GetOptions{})
+		pod, err := cl.CoreV1().Pods(pod.Namespace).Get(context.TODO(), pod.Name, metav1.GetOptions{})
 		if err != nil {
 			return err
 		}
