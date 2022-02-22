@@ -1,3 +1,5 @@
+# github.com/alessio/shellescape v1.4.1
+## explicit; go 1.14
 # github.com/davecgh/go-spew v1.1.1
 ## explicit
 github.com/davecgh/go-spew/spew
@@ -109,6 +111,9 @@ google.golang.org/protobuf/runtime/protoimpl
 google.golang.org/protobuf/types/known/anypb
 google.golang.org/protobuf/types/known/durationpb
 google.golang.org/protobuf/types/known/timestamppb
+# gopkg.in/alessio/shellescape.v1 v1.0.0-20170105083845-52074bc9df61
+## explicit
+gopkg.in/alessio/shellescape.v1
 # gopkg.in/check.v1 v1.0.0-20201130134442-10cb98267c6c
 ## explicit; go 1.11
 # gopkg.in/inf.v0 v0.9.1
