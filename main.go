@@ -183,6 +183,10 @@ func generatePod(cwd string, env []string, args []string) *corev1.Pod {
 							Name:      "transcode",
 							MountPath: "/transcode",
 						},
+						{
+							Name:      "transcode",
+							MountPath: "/tmp",
+						},
 					},
 				},
 			},
